@@ -19,29 +19,79 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="portfolio">
+  <meta name="apple-mobile-web-app-title" content="yavuzselimhankaya">
 
   
 
   <meta name="robots" content="noindex" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" href="cidqucoin.png" sizes="any"/>
+  <link rel="icon" type="image/png" href="cidqucoin.png" />
+  <link rel="apple-touch-icon" href="cidqucoin.png">
+  
 
   <!-- Open Graph & SEO tags -->
-  <meta property="og:title" content="portfolio" />
-  <meta property="og:description" content="Built with FlutterFlow." />
-  <meta property="og:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" /> 
-  <meta name="twitter:title" content="portfolio" />
-  <meta name="twitter:description" content="Built with FlutterFlow." />
-  <meta name="twitter:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" />
+  <meta property="og:title" content="Yavuz Selimhan Kaya's Portfolio Page!" />
+  <meta property="og:description" content="Yavuz Selimhan Kaya's Portfolio Page!" />
+  <meta property="og:image" content="Screenshot_2023-03-09_231500.jpg" /> 
+  <meta name="twitter:title" content="Yavuz Selimhan Kaya's Portfolio Page!" />
+  <meta name="twitter:description" content="Yavuz Selimhan Kaya's Portfolio Page!" />
+  <meta name="twitter:image" content="Screenshot_2023-03-09_231500.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <title> portfolio </title>
-  <meta name="description" content="Built with FlutterFlow." />
+  <title> Yavuz Selimhan Kaya's Portfolio Page! </title>
+  <meta name="description" content="Yavuz Selimhan Kaya's Portfolio Page!" />
     
 
   <link rel="manifest" href="manifest.json">
+  <style>
+    body {background-color: #212121;}
+    
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+    
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border: 15px solid;
+        border-top: 16px solid #FFFFFF;
+        border-right: 16px solid #212121;
+        border-bottom: 16px solid #FFFFFF;
+        border-left: 16px solid #212121;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+    
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+    
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -55,10 +105,9 @@
     }
     
   </script>
-  
-  
-  
-  
+  <div class="loading">
+    <div class="loader"></div>
+  </div>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
