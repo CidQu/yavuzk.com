@@ -38,7 +38,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {});
-      if (FFLocalizations.of(context).languageCode == 'NL') {
+      if (FFLocalizations.of(context).languageCode == 'nl') {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
