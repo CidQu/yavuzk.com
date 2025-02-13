@@ -18,8 +18,9 @@
 	<string>APPL</string>
 	<key>CFBundleLocalizations</key>
 	<array>
-		<string>tr</string>
 		<string>en</string>
+		<string>tr</string>
+		<string>nl</string>
 	</array>
 
 	<key>CFBundleShortVersionString</key>
