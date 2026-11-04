@@ -7,32 +7,32 @@ return [
     'socials' => [
         [
             'label' => 'Google Play',
-            'icon' => 'fa-brands fa-google-play',
+            'icon' => 'google-play',
             'url' => 'https://play.google.com/store/apps/dev?id=8936006421034119095&hl=tr&gl=US',
         ],
         [
             'label' => 'App Store',
-            'icon' => 'fa-brands fa-app-store-ios',
+            'icon' => 'app-store',
             'url' => 'https://apps.apple.com/us/developer/cidqu-limited/id1528739238',
         ],
         [
             'label' => 'Instagram',
-            'icon' => 'fa-brands fa-instagram',
+            'icon' => 'instagram',
             'url' => 'https://www.instagram.com/cidqu',
         ],
         [
             'label' => 'Steam',
-            'icon' => 'fa-brands fa-steam',
+            'icon' => 'steam',
             'url' => 'https://www.steamcommunity.com/id/CidQu',
         ],
         [
             'label' => 'GitHub',
-            'icon' => 'fa-brands fa-github',
+            'icon' => 'github',
             'url' => 'https://github.com/CidQu',
         ],
         [
             'label' => 'LinkedIn',
-            'icon' => 'fa-brands fa-linkedin-in',
+            'icon' => 'linkedin',
             'url' => 'https://www.linkedin.com/in/cidqu',
         ],
     ],
