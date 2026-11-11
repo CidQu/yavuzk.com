@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class DocumentController extends Controller
 {
-    public function show(Request $request): View
+    public function show(Request $request): Response
     {
         $data = $request->validate([
             'path' => ['required', 'string'],
@@ -25,14 +26,18 @@ class DocumentController extends Controller
         $title = $data['title'] ?? __('messages.meurc5ww');
         $back = url()->previous();
 
-        if (! $back || $back === $request->fullUrl()) {
+        // The back button navigates client-side, so it must stay on this site.
+        if (! $back || $back === $request->fullUrl() || parse_url($back, PHP_URL_HOST) !== $request->getHost()) {
             $back = route('home');
         }
 
-        return view('pages.document', [
+        return Inertia::render('document', [
             'title' => $title,
             'source' => $source,
-            'backUrl' => $back,
+            'back' => [
+                'label' => __('messages.2md6j0g0'),
+                'href' => $back,
+            ],
         ]);
     }
 
