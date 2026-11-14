@@ -139,8 +139,8 @@ void main() {
         splash = 1.0 - exp(-splash);
 
         // Surf: the water glows where it meets the shore, more as crests land.
-        foam += exp(-offshore / (2.0 + 3.5 * landing + 3.0 * splash))
-            * (0.08 + 0.26 * landing + 0.5 * splash);
+        foam += exp(-offshore / (2.0 + 3.5 * landing + 2.0 * splash))
+            * (0.08 + 0.26 * landing + 0.36 * splash);
 
         color += FOAM * foam;
     }
@@ -223,10 +223,10 @@ void main() {
 
     // ------------------------------------------------------------ shoreline
     float ours = smoothstep(3.0, 0.5, district);         // Ünye's own stretch of coast
-    float halfWidth = mix(0.4, 0.8, ours) + 0.3 * landing * ours + 0.9 * splash;
+    float halfWidth = mix(0.4, 0.8, ours) + 0.3 * landing * ours + 0.65 * splash;
     float shoreline = 1.0 - smoothstep(halfWidth - aa, halfWidth + aa, abs(coast));
     color = mix(color, SHORE, min(shoreline * (mix(0.4, 1.0, ours) + splash), 1.0));
-    color += SHORE * exp(-abs(coast) / 5.0) * (0.05 * ours + 0.08 * splash);
+    color += SHORE * exp(-abs(coast) / 5.0) * (0.05 * ours + 0.06 * splash);
 
     // Fade to the page colour where the terrain data runs out.
     vec2 margin = min(uv, 1.0 - uv);
