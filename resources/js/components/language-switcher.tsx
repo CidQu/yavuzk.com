@@ -1,18 +1,18 @@
-import { GlobeIcon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { router, usePage } from '@inertiajs/react';
-import { useId } from 'react';
+import { LanguagesIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default function LanguageSwitcher() {
     const { locale } = usePage().props;
-    const labelId = useId();
 
     const change = (code: string) => {
         if (code === locale.current) {
@@ -23,33 +23,32 @@ export default function LanguageSwitcher() {
     };
 
     return (
-        <div className="flex items-center gap-3">
-            <span
-                id={labelId}
-                className="text-xs tracking-[0.08em] text-muted-foreground uppercase"
-            >
-                {locale.label}
-            </span>
-            <Select value={locale.current} onValueChange={change}>
-                <SelectTrigger
-                    aria-labelledby={labelId}
-                    className="min-w-36 bg-muted hover:bg-accent"
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" aria-label={locale.label}>
+                    <LanguagesIcon />
+                    <span className="font-mono text-xs uppercase">
+                        {locale.current}
+                    </span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-40">
+                <DropdownMenuLabel>{locale.label}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuRadioGroup
+                    value={locale.current}
+                    onValueChange={change}
                 >
-                    <HugeiconsIcon
-                        icon={GlobeIcon}
-                        strokeWidth={2}
-                        className="text-muted-foreground"
-                    />
-                    <SelectValue />
-                </SelectTrigger>
-                <SelectContent align="end" position="popper">
                     {locale.options.map((option) => (
-                        <SelectItem key={option.code} value={option.code}>
+                        <DropdownMenuRadioItem
+                            key={option.code}
+                            value={option.code}
+                        >
                             {option.label}
-                        </SelectItem>
+                        </DropdownMenuRadioItem>
                     ))}
-                </SelectContent>
-            </Select>
-        </div>
+                </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+        </DropdownMenu>
     );
 }

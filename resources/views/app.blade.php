@@ -3,7 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="color-scheme" content="light dark">
+
+        {{-- Apply the saved (or system) theme before first paint to avoid a flash. --}}
+        <script>
+            (function () {
+                var theme = null;
+                try { theme = localStorage.getItem('theme'); } catch (e) {}
+                var dark = theme ? theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', dark);
+            })();
+        </script>
 
         <link rel="icon" type="image/png" href="{{ asset('assets/images/cidqucoin.png') }}">
 

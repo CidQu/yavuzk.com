@@ -1,25 +1,31 @@
-import {
-    ArrowUpRight01Icon,
-    Briefcase01Icon,
-    FileUserIcon,
-    FolderGitTwoIcon,
-    GitBranchIcon,
-    InformationCircleIcon,
-    Mail01Icon,
-    StarIcon,
-    TranslateIcon,
-    UserCircleIcon,
-    UserGroupIcon,
-} from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
-import type { IconSvgElement } from '@hugeicons/react';
 import { Head, Link, usePage } from '@inertiajs/react';
+import {
+    ArrowUpRightIcon,
+    BriefcaseIcon,
+    CircleUserIcon,
+    FileUserIcon,
+    FolderGit2Icon,
+    Gamepad2Icon,
+    GitCommitHorizontalIcon,
+    InfoIcon,
+    LanguagesIcon,
+    MailIcon,
+    StarIcon,
+    UsersIcon,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import SocialLinks from '@/components/social-links';
 import type { SocialLink } from '@/components/social-links';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import {
+    Card,
+    CardAction,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 
 interface Stat {
     label: string;
@@ -45,16 +51,17 @@ interface HomeProps {
     notice: { title: string; message: string } | null;
 }
 
-const icons: Record<string, IconSvgElement> = {
+const icons: Record<string, LucideIcon> = {
     stars: StarIcon,
-    repositories: FolderGitTwoIcon,
-    commits: GitBranchIcon,
-    followers: UserGroupIcon,
-    projects: Briefcase01Icon,
-    contact: Mail01Icon,
-    about: UserCircleIcon,
+    repositories: FolderGit2Icon,
+    commits: GitCommitHorizontalIcon,
+    followers: UsersIcon,
+    projects: BriefcaseIcon,
+    contact: MailIcon,
+    about: CircleUserIcon,
     cv: FileUserIcon,
-    translations: TranslateIcon,
+    translations: LanguagesIcon,
+    games: Gamepad2Icon,
 };
 
 export default function Home({
@@ -74,115 +81,92 @@ export default function Home({
         <>
             <Head title={title} />
 
-            <Card className="rounded-4xl py-0">
-                <CardContent className="flex flex-col items-center gap-8 p-6 sm:p-8 md:flex-row md:gap-12 md:p-10">
-                    <img
-                        src={avatar}
-                        alt="CidQu avatar"
-                        width={200}
-                        height={200}
-                        className="size-40 shrink-0 rounded-4xl bg-muted object-cover ring-1 ring-foreground/10 sm:size-50"
-                    />
+            {notice && (
+                <Alert>
+                    <InfoIcon />
+                    <AlertTitle>{notice.title}</AlertTitle>
+                    <AlertDescription>{notice.message}</AlertDescription>
+                </Alert>
+            )}
 
-                    <div className="flex min-w-0 flex-1 flex-col items-center gap-6 text-center md:items-start md:text-left">
-                        <div className="space-y-2">
-                            <p className="text-base text-muted-foreground">
-                                {greeting}
-                            </p>
-                            <h1 className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
-                                {heading}
-                            </h1>
-                        </div>
+            <section className="flex flex-col gap-6 py-6 sm:py-10">
+                <Avatar className="size-20 border sm:size-24">
+                    <AvatarImage src={avatar} alt="CidQu avatar" />
+                    <AvatarFallback>{heading.charAt(0)}</AvatarFallback>
+                </Avatar>
 
-                        {notice && (
-                            <Alert className="rounded-2xl border-info-border bg-info text-left text-info-foreground">
-                                <HugeiconsIcon
-                                    icon={InformationCircleIcon}
-                                    strokeWidth={2}
-                                />
-                                <AlertTitle className="font-semibold">
-                                    {notice.title}
-                                </AlertTitle>
-                                <AlertDescription className="text-info-foreground/80">
-                                    {notice.message}
-                                </AlertDescription>
-                            </Alert>
-                        )}
+                <div className="space-y-2">
+                    <p className="text-muted-foreground sm:text-lg">
+                        {greeting}
+                    </p>
+                    <h1 className="text-5xl font-bold tracking-tighter sm:text-6xl">
+                        {heading}
+                    </h1>
+                </div>
 
-                        <SocialLinks links={socials} />
-                    </div>
-                </CardContent>
-            </Card>
+                <nav className="flex flex-wrap gap-2">
+                    {links.map((link, index) => {
+                        const Icon = icons[link.icon];
+                        const content = (
+                            <>
+                                {Icon && <Icon />}
+                                {link.label}
+                                {link.is_external && (
+                                    <ArrowUpRightIcon className="opacity-60" />
+                                )}
+                            </>
+                        );
 
-            <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                {stats.map((stat) => (
-                    <Card key={stat.icon} className="rounded-3xl">
-                        <CardContent className="flex flex-col items-center gap-3 text-center">
-                            <div className="flex size-12 items-center justify-center rounded-xl bg-accent text-primary">
-                                <HugeiconsIcon
-                                    icon={icons[stat.icon]}
-                                    strokeWidth={1.75}
-                                    className="size-6"
-                                />
-                            </div>
-                            <p className="text-sm text-muted-foreground">
-                                {stat.label}
-                            </p>
-                            <p className="font-heading text-3xl font-semibold tabular-nums">
-                                {stat.value === null
-                                    ? '—'
-                                    : formatter.format(stat.value)}
-                            </p>
-                        </CardContent>
-                    </Card>
-                ))}
+                        return (
+                            <Button
+                                key={link.url}
+                                asChild
+                                variant={index === 0 ? 'default' : 'outline'}
+                            >
+                                {link.is_external ? (
+                                    <a
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {content}
+                                    </a>
+                                ) : (
+                                    <Link href={link.url}>{content}</Link>
+                                )}
+                            </Button>
+                        );
+                    })}
+                </nav>
+
+                <div className="-ml-2.5">
+                    <SocialLinks links={socials} />
+                </div>
             </section>
 
-            <Separator className="mt-2" />
-
-            <nav className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-                {links.map((link) => {
-                    const content = (
-                        <>
-                            <HugeiconsIcon
-                                icon={icons[link.icon]}
-                                strokeWidth={2}
-                                data-icon="inline-start"
-                            />
-                            {link.label}
-                            {link.is_external && (
-                                <HugeiconsIcon
-                                    icon={ArrowUpRight01Icon}
-                                    strokeWidth={2}
-                                    data-icon="inline-end"
-                                    className="opacity-70"
-                                />
-                            )}
-                        </>
-                    );
+            <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                {stats.map((stat) => {
+                    const Icon = icons[stat.icon];
 
                     return (
-                        <Button
-                            key={link.url}
-                            asChild
-                            size="lg"
-                            className="h-13 px-6 text-base font-semibold tracking-[0.02em] transition-all hover:-translate-y-0.5 hover:bg-primary/90 has-data-[icon=inline-end]:pr-5 has-data-[icon=inline-start]:pl-5 [&_svg:not([class*='size-'])]:size-4.5"
-                        >
-                            {link.is_external ? (
-                                <a
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {content}
-                                </a>
-                            ) : (
-                                <Link href={link.url}>{content}</Link>
-                            )}
-                        </Button>
+                        <Card key={stat.icon}>
+                            <CardHeader>
+                                <CardDescription>{stat.label}</CardDescription>
+                                <CardTitle className="text-3xl tabular-nums">
+                                    {stat.value === null
+                                        ? '—'
+                                        : formatter.format(stat.value)}
+                                </CardTitle>
+                                {Icon && (
+                                    <CardAction>
+                                        <Icon className="size-4 text-muted-foreground" />
+                                    </CardAction>
+                                )}
+                            </CardHeader>
+                        </Card>
                     );
                 })}
-            </nav>
+            </section>
         </>
     );
 }

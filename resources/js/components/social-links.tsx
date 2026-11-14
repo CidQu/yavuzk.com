@@ -31,7 +31,7 @@ const icons: Record<string, IconType> = {
 
 export default function SocialLinks({ links }: { links: SocialLink[] }) {
     return (
-        <ul className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+        <ul className="flex flex-wrap items-center gap-1">
             {links.map((link) => {
                 const Icon = icons[link.icon];
 
@@ -41,9 +41,9 @@ export default function SocialLinks({ links }: { links: SocialLink[] }) {
                             <TooltipTrigger asChild>
                                 <Button
                                     asChild
-                                    variant="outline"
-                                    size="icon-lg"
-                                    className="size-11 rounded-xl text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-accent hover:text-primary"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="text-muted-foreground"
                                 >
                                     <a
                                         href={link.url}
@@ -52,7 +52,7 @@ export default function SocialLinks({ links }: { links: SocialLink[] }) {
                                         aria-label={link.label}
                                     >
                                         {Icon ? (
-                                            <Icon className="size-5" aria-hidden />
+                                            <Icon aria-hidden />
                                         ) : (
                                             link.label.charAt(0)
                                         )}

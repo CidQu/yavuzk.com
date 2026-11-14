@@ -58,5 +58,6 @@ return [
     'ytkhnwdm' => '',
     'z2ovz82h' => 'GitHub Commit:',
     'zvulrezm' => 'In 2021, I found myself on game patch platforms due to the lack of Turkish language support in the video game I had just purchased. Afterwards, I took part in the Dishonored: Death Of The Outsider project as a Translator as the first task given to me. Since I enjoyed this process so much, I took on the translation of the newly released “DEATHLOOP” game by the same company myself and we started translating from scratch by creating a team. Afterwards, I embarked on bigger works such as Sunset Overdrive, Demon Slayer. We are currently continuing to work on my own forum and Discord! ceviri.cidqu.net',
+    'steam_games' => 'My Games',
     'language_label' => 'Language',
 ];

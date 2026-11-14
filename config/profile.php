@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'github' => [
+        'username' => 'cidqu',
+        // Optional: raises the GitHub API rate limit from 60 to 5,000 requests/hour.
+        'token' => env('GITHUB_TOKEN'),
+    ],
     'hero' => [
         'avatar' => 'assets/images/cidqucoin.png',
     ],
@@ -51,6 +56,7 @@ return [
     'cta' => [
         'contact' => 'https://cidqu.net/iletisim',
         'translations' => 'https://ceviri.cidqu.net',
+        'steam' => 'https://store.steampowered.com/search/?publisher=CidQu%20Limited',
     ],
     'about' => [
         'profile_photo' => 'assets/images/Screenshot_2023-03-09_231500.jpg',

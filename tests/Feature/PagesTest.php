@@ -13,7 +13,11 @@ class PagesTest extends TestCase
         parent::setUp();
 
         Http::fake([
-            'api.github-star-counter.workers.dev/*' => Http::response(['stars' => 1234]),
+            'api.github.com/users/*/repos*' => Http::response([
+                ['stargazers_count' => 1000],
+                ['stargazers_count' => 234],
+            ]),
+            'api.github.com/search/commits*' => Http::response(['total_count' => 321]),
             'api.github.com/users/*' => Http::response(['public_repos' => 42, 'followers' => 7]),
         ]);
     }
@@ -35,8 +39,10 @@ class PagesTest extends TestCase
                 ->where('stats.0.label', 'GitHub Stars')
                 ->where('stats.0.value', 1234)
                 ->where('stats.1.value', 42)
+                ->where('stats.2.value', 321)
                 ->where('stats.3.value', 7)
-                ->has('links', 5)
+                ->has('links', 6)
+                ->where('links.5.url', 'https://store.steampowered.com/search/?publisher=CidQu%20Limited')
                 ->where('notice', null)
             );
     }

@@ -16,7 +16,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     return (
         <div className="flex min-h-svh flex-col bg-background">
             <SiteHeader />
-            <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-4 pt-10 pb-16 sm:px-6">
+            <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-4 pt-8 pb-16 sm:px-6">
                 {children}
             </main>
             <SiteFooter />

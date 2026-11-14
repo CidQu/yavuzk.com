@@ -1,9 +1,7 @@
-import { ArrowLeft02Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { Head, Link } from '@inertiajs/react';
+import { ArrowLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface DocumentProps {
@@ -19,41 +17,33 @@ export default function Document({ title, source, back }: DocumentProps) {
         <>
             <Head title={title} />
 
-            <Card className="gap-4 rounded-4xl">
-                <CardHeader className="flex flex-wrap items-center justify-between gap-4">
-                    <Button
-                        asChild
-                        variant="ghost"
-                        className="-ml-2 font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                    >
-                        <Link href={back.href}>
-                            <HugeiconsIcon
-                                icon={ArrowLeft02Icon}
-                                strokeWidth={2}
-                                data-icon="inline-start"
-                            />
-                            {back.label}
-                        </Link>
-                    </Button>
-                    <h1 className="font-heading text-2xl font-semibold">
-                        {title}
-                    </h1>
-                </CardHeader>
-                <CardContent>
-                    <div className="relative h-[70svh] overflow-hidden rounded-2xl bg-muted">
-                        {!loaded && (
-                            <Skeleton className="absolute inset-0 rounded-none" />
-                        )}
-                        <iframe
-                            src={source}
-                            title={title}
-                            loading="lazy"
-                            onLoad={() => setLoaded(true)}
-                            className="relative size-full border-0"
-                        />
-                    </div>
-                </CardContent>
-            </Card>
+            <div className="flex flex-col items-start gap-3">
+                <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="-ml-2.5 text-muted-foreground"
+                >
+                    <Link href={back.href}>
+                        <ArrowLeftIcon />
+                        {back.label}
+                    </Link>
+                </Button>
+                <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+            </div>
+
+            <div className="relative h-[75svh] overflow-hidden rounded-xl border bg-muted shadow-sm">
+                {!loaded && (
+                    <Skeleton className="absolute inset-0 rounded-none" />
+                )}
+                <iframe
+                    src={source}
+                    title={title}
+                    loading="lazy"
+                    onLoad={() => setLoaded(true)}
+                    className="relative size-full border-0"
+                />
+            </div>
         </>
     );
 }

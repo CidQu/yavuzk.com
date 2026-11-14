@@ -58,5 +58,6 @@ return [
     'ytkhnwdm' => '',
     'z2ovz82h' => 'GitHub Commit:',
     'zvulrezm' => '2021 yılında yeni satın almış olduğum video oyununda Türkçe dil desteği olmaması sebebi ile kendimi oyun yama platforlarında buldum. Daha sonrasında ilk bana verilen görev olarak Dishonored: Death Of The Outsider projesinde Çevirmen olarak yer aldım. Bu süreçte çok zevk aldığımdan dolayı aynı şirketin yeni çıkartmış olduğu \"DEATHLOOP\" oyunun çevirisini kendim üstlendim ve bir ekip oluşturarak sıfırdan çeviri yapmaya başladık. Sonrasında Sunset Overdrive, Demon Slayer gibi daha büyük işlere giriştim. Şu anda kendi forumum ve Discordum üzerinden çalışmalara devam ediyoruz! ceviri.cidqu.net',
+    'steam_games' => 'Oyunlarım',
     'language_label' => 'Dil',
 ];
