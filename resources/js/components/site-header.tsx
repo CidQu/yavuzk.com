@@ -8,7 +8,7 @@ export default function SiteHeader() {
     const { name, navigation } = usePage().props;
 
     return (
-        <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-sm">
+        <header className="sticky top-0 z-40 border-b bg-background/55 backdrop-blur-md">
             <div className="mx-auto flex h-14 w-full max-w-4xl items-center gap-6 px-4 sm:px-6">
                 <Link
                     href="/"
